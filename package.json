@@ -1,6 +1,7 @@
 {
   "name": "hello-node",
   "version": "0.0.1",
+  "type": "module",
   "description": "A simple Node app built on fastify, instantly up and running.",
   "main": "server.js",
   "scripts": {
@@ -10,7 +11,7 @@
     "nanoexpress": "^3.2.2"
   },
   "engines": {
-    "node": "15.x"
+    "node": "14.x"
   },
   "repository": {
     "url": "https://glitch.com/edit/#!/glitch-hello-node"
