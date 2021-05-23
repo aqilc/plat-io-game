@@ -4,7 +4,14 @@ const /* socket = io.connect(":30000?sketch=558471"), */
 		players = [], grav = .003, tdt = /* Target FPS */ 200,
     
     // Button holder
-    buttons = [];
+    buttons = [], txth = {
+      fonts: {
+        monospace: "https://github.com/google/fonts/blob/main/apache/robotomono/RobotoMono%5Bwght%5D.ttf?raw=true"
+      },
+      size: 12, font: "monospace",
+      set s(v) { textSize(v); this.size = v; },
+      set f(f) { textFont(fonts[f]); this.font = f; },
+    };
 
 let fullscreened = false, bc = false;
 
@@ -24,6 +31,10 @@ function setup() {
 	// Creates the canvas
 	createCanvas(windowWidth, windowHeight);
 	
+  // Loads every font
+  for (let i in txth.fonts)
+    txth.fonts[i] = loadFont(txth.fonts[i]);
+  
 	// Pushes you onto the players stack
 	players.push(you = new You());
 	
@@ -64,7 +75,7 @@ function setup() {
 		players.forEach(p => p.draw());
 		pop();
 		
-    textFont("Roboto Mono");
+    txth.font = "monospace";
     button("Fullscreen?", 20, 20, 100, fullscreened ? nofullscreen : fullscreen);
     
 		// FPS
