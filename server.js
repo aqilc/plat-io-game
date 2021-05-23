@@ -5,10 +5,10 @@ const users = [];
 
 // The entirety of the web routes and webapp code
 uws.App()
-  .any("*", (res, _), => res.writeHeader("Access-Control-Allow-Origin", "*"))
-
+  
   // Styles
   .get("/style.css", (res, req) => {
+    res.writeHeader("Access-Control-Allow-Origin", "*")
     res.writeHeader("content-type", "text/css");
     res.end(read("public/style.css") + "");
   })
@@ -16,6 +16,7 @@ uws.App()
   // The main webpage
   .get("/", (res, req) => {
     res.writeHeader("Access-Control-Allow-Origin", "*");
+    res.writeHeader("Access-Control-Allow-headers", "*");
     res.writeHeader("content-type", "text/html");
     res.end(read("public/index.html") + "");
   })
@@ -58,6 +59,7 @@ uws.App()
     if(!path.endsWith(".js")) return res.writeStatus("404"), res.end();
     
     // Send requested js file from the js/ dir
+    res.writeHeader("Access-Control-Allow-Origin", "*")
     res.writeHeader("content-type", "application/javascript");
     res.end(read("js" + path) + "");
   }).listen(8000, () => console.log("Your app is listening on port 8000"));
