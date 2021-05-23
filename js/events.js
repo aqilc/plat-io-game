@@ -4,6 +4,9 @@ function mouseClicked() {
 	
 }
 
+function mouseMove() {
+  buttons.find(b => b.collides());
+}
 
 	// Main keybinds, basically all of the 
 const keybinds = {

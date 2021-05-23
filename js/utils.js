@@ -64,7 +64,7 @@ class Button {
   // Predefined stuff
   col1 = [30, 120] /* color when not hovering */;
   col2 = [30, 150] /* color when hovering */;
-  tcol = 200;
+  tcol = 255;
   r = 5 /* radius of the rectangle */;
   
   // If it's hovering or not
@@ -79,10 +79,9 @@ class Button {
   draw() {
     let { x, y, w, h, txt, tcol, tsiz, r, hov } = this;
     if (hov) fill(this.col2); else fill(this.col1);
-    //console.log(x,y,w,h,txt,tcol,tsiz,r,hov);
     rect(x, y, w, h, r);
     fill(tcol);
-    //textSize(tsiz);
+    textSize(tsiz);
     textAlign(CENTER, CENTER);
     text(txt, x + w / 2, y + h / 2);
     return this;
@@ -129,5 +128,5 @@ const { sin, cos, sqrt, PI, floor, round, ceil, max, min, abs } = Math,
 			// colrec = (x, y, w, h, x2, y2, w2, h2) => x + w >= x2 && x <= x2 + w2 && y + h >= y2 && y <= y2 + h2,
 			// colrect = ({ x, y, w, h }, { x: x2, y: y2, w: w2, h: h2 }) => x + w >= x2 && x <= x2 + w2 && y + h >= y2 && y <= y2 + h2;
       
-      button = (txt, x, y, w, h, fun) => buttons.push(new Button(console.log(txt, x, y, w,
-        typeof h === "function" ? texth(txt, w) * 1.5 : h || texth(txt, w) * 1.5, fun || h, min(texth(txt, w) / 3, h * 7 / 8))).draw());
+      button = (txt, x, y, w, h, fun) => buttons.push(new Button(txt, x, y, w,
+        typeof h === "function" ? texth(txt, w) * 1.5 : h || texth(txt, w) * 1.5, fun || h, min(texth(txt, w) / 1.2, (h || height) * 7 / 8)));
