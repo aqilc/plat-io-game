@@ -61,12 +61,13 @@ function setup() {
 		players.forEach(p => p.draw());
 		pop();
 		
-    textFont("Roboto mono");
+    textFont("Roboto Mono");
+    button("Fullscreen?", 20, 20, 100);
     
 		// FPS
     textAlign(LEFT, TOP);
+    textSize(12);
 		fill(100);
-		text(((1/delta) * 1000).toFixed(1) + "FPS\nActual frametime: " + (performance.now() - last).toFixed(1) + " ms\n" + you.x + ", " + you.y + "\n" + delta + "\n" + buttons[0], 100, 120);
-    button("Fullscreen?", 20, 20, 100);
+		text(((1/delta) * 1000).toFixed(1) + "FPS\nActual frametime: " + (performance.now() - last).toFixed(1) + " ms\n" + you.x + ", " + you.y + "\n" + delta + "\n" + JSON.stringify(buttons[0]), 100, 120);
 	}, 1000 / tdt);
 }
