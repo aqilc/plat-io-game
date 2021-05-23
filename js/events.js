@@ -1,14 +1,9 @@
 
-// Program Events
 function mouseClicked() {
-	
+  buttons.find(b => b.click());
 }
 
-function mouseMove() {
-  buttons.find(b => b.collides());
-}
-
-	// Main keybinds, basically all of the 
+// Main keybinds, not including any arrows
 const keybinds = {
 		"ctrl+=": () => size += 2,
 	},

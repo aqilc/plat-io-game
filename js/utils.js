@@ -65,7 +65,7 @@ class Button {
   col1 = [30, 120] /* color when not hovering */;
   col2 = [30, 150] /* color when hovering */;
   tcol = 255;
-  r = 5 /* radius of the rectangle */;
+  //r = 5 /* radius of the rectangle */;
   
   // If it's hovering or not
   hov = false;
@@ -73,12 +73,13 @@ class Button {
   constructor(txt, x, y, w, h, fun, tsiz) {
     this.txt = txt; this.fun = fun; this.tsiz = tsiz;
     this.x = x; this.y = y; this.w = w; this.h = h;
+    this.r = this.h;
   }
   
   // Draw the thing
   draw() {
     let { x, y, w, h, txt, tcol, tsiz, r, hov } = this;
-    if (hov) fill(this.col2); else fill(this.col1);
+    if (!bc && mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h) fill(this.col2), bc = this.hov = true; else fill(this.col1);
     rect(x, y, w, h, r);
     fill(tcol);
     textSize(tsiz);
@@ -87,16 +88,9 @@ class Button {
     return this;
   }
   
-  collides() {
-    let { x, y, w, h } = this;
-    if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h)
-      return this.hov = true;
-    return this.hov = false;
-  }
-  
   // Check for collision with mouse and return if true
   click() {
-    if (this.hov) return this.fun(), true;
+    if (this.hov) return this.fun?.(), true;
     return false;
   }
 }
@@ -121,12 +115,12 @@ const { sin, cos, sqrt, PI, floor, round, ceil, max, min, abs } = Math,
         return size;
       },
       
-      fullscreen = () => document.documentElement.requestFullscreen(),
-      nofullscreen = () => document.exitFullscreen(),
+      fullscreen = () => { document.documentElement.requestFullscreen(); fullscreened = true },
+      nofullscreen = () => { document.exitFullscreen(); fullscreened = false; },
 			
 			// Collision of two rects
 			// colrec = (x, y, w, h, x2, y2, w2, h2) => x + w >= x2 && x <= x2 + w2 && y + h >= y2 && y <= y2 + h2,
 			// colrect = ({ x, y, w, h }, { x: x2, y: y2, w: w2, h: h2 }) => x + w >= x2 && x <= x2 + w2 && y + h >= y2 && y <= y2 + h2;
       
       button = (txt, x, y, w, h, fun) => buttons.push(new Button(txt, x, y, w,
-        typeof h === "function" ? texth(txt, w) * 1.5 : h || texth(txt, w) * 1.5, fun || h, min(texth(txt, w) / 1.2, (h || height) * 7 / 8)));
+        typeof h === "function" ? texth(txt, w) * 1.5 : h || texth(txt, w) * 1.5, fun || h, min(texth(txt, w) / 1.2, (typeof h === "number" ? h : height) * 7 / 8)).draw());

@@ -6,6 +6,8 @@ const /* socket = io.connect(":30000?sketch=558471"), */
     // Button holder
     buttons = [];
 
+let fullscreened = false, bc = false;
+
 // Variables
 let size = 20, level, you, cam, last, delta;
 
@@ -37,6 +39,7 @@ function setup() {
 	// Draws and operates everything
 	setInterval(() => {
     
+    bc = false;
     buttons.length = 0;
 		
 		push();
@@ -62,7 +65,7 @@ function setup() {
 		pop();
 		
     textFont("Roboto Mono");
-    button("Fullscreen?", 20, 20, 100);
+    button("Fullscreen?", 20, 20, 100, fullscreened ? nofullscreen : fullscreen);
     
 		// FPS
     textAlign(LEFT, TOP);
