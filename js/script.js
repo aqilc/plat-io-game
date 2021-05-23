@@ -63,11 +63,10 @@ function setup() {
 		
     textFont("Roboto mono");
     
-    button("Fullscreen?", 20, 20, 100);
-    
 		// FPS
     textAlign(LEFT, TOP);
 		fill(100);
 		text(((1/delta) * 1000).toFixed(1) + "FPS\nActual frametime: " + (performance.now() - last).toFixed(1) + " ms\n" + you.x + ", " + you.y + "\n" + delta + "\n" + buttons[0], 100, 120);
+    button("Fullscreen?", 20, 20, 100);
 	}, 1000 / tdt);
 }

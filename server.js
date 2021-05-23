@@ -21,7 +21,7 @@ uws.App()
   .ws("/ws", {
   
     // Websocket behavioral options
-    idleTimeout: 12,
+    idleTimeout: 60,
     compression: 0,
     maxPayloadLength: 1024 * 1024,
   
@@ -32,7 +32,7 @@ uws.App()
       
       // Auto parses the given arraybuffer??
       if(!binary)
-        message = message.toString("utf8");
+        message = Buffer.from(message).toString("utf8");
       
       // If it's JSON, parse it
       if(typeof message === "string") {
