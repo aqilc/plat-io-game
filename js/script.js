@@ -6,7 +6,7 @@ const /* socket = io.connect(":30000?sketch=558471"), */
     // Button holder
     buttons = [], txth = {
       fonts: {
-        monospace: "https://cdn.glitch.com/e1856840-428a-4553-8031-902816e57879%2FRobotoMono.ttf?v=1621783528593"
+        monospace: "monospace" // "https://cdn.glitch.com/e1856840-428a-4553-8031-902816e57879%2FRobotoMono.ttf?v=1621783528593"
       },
       size: 12, font: "monospace",
       set s(v) { textSize(v); this.size = v; },
