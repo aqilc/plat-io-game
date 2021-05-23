@@ -4,7 +4,7 @@ import { readFileSync as read } from "fs";
 const app = nano()
 
 app.get("/", (_, res) => res.redirect("/index.html"));
-app.get("/(.*).html", (req, res) => {
+app.get("/index.html", (req, res) => {
   res.setHeader("content-type", "text/html");
   res.send(read("public" + req.path) + "");
 });
