@@ -73,7 +73,7 @@ class Button {
   constructor(txt, x, y, w, h, fun, tsiz) {
     this.txt = txt; this.fun = fun; this.tsiz = tsiz;
     this.x = x; this.y = y; this.w = w; this.h = h;
-    this.r = this.h;
+    this.r = h / 2;
   }
   
   // Draw the thing
@@ -122,5 +122,10 @@ const { sin, cos, sqrt, PI, floor, round, ceil, max, min, abs } = Math,
 			// colrec = (x, y, w, h, x2, y2, w2, h2) => x + w >= x2 && x <= x2 + w2 && y + h >= y2 && y <= y2 + h2,
 			// colrect = ({ x, y, w, h }, { x: x2, y: y2, w: w2, h: h2 }) => x + w >= x2 && x <= x2 + w2 && y + h >= y2 && y <= y2 + h2;
       
-      button = (txt, x, y, w, h, fun) => buttons.push(new Button(txt, x, y, w,
-        typeof h === "function" ? texth(txt, w) * 1.5 : h || texth(txt, w) * 1.5, fun || h, min(texth(txt, w) / 1.2, (typeof h === "number" ? h : height) * 7 / 8)).draw());
+      button = (txt, x, y, w, h, fun) => {
+        let bh = 0; 
+        if(typeof h === "function")
+          bh = texth(txt, w) * 1.6, fun = h;
+        else bh = h || texth(txt, w) * 1.6;
+        buttons.push(new Button(txt, x, y, w, bh, fun, texth(txt, w - bh)).draw())
+      };
