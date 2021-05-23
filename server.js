@@ -3,9 +3,20 @@ import { readFileSync as read } from "fs";
 
 const app = nano()
 
-app.get("/", (_, res) => res.redirect("/index.html"));
-app.get("/index.html", (req, res) => {
+app.use((req, res, next) => {
+  if(!req.path.endsWith(".js")) next(req, res, next);
+  res.setHeader("content-type", "application/javascript");
+  res.end(read("js" + req.path) + "");
+});
+
+app.get("/", (req, res) => {
   res.setHeader("content-type", "text/html");
   res.send(read("public" + req.path) + "");
 });
+
+app.get("/style.css", (req, res) => {
+  res.setHeader("content-type", "text/css");
+  res.send(read("public" + req.path) + "");
+});
+
 app.listen(8000);
