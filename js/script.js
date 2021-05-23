@@ -86,6 +86,6 @@ function setup() {
 function preload() {
   
   // Loads every font
-  for (let i in txth.fonts)
-    txth.fonts[i] = loadFont(txth.fonts[i]);
+  //for (let i in txth.fonts)
+    //txth.fonts[i] = loadFont(txth.fonts[i]);
 }

@@ -123,9 +123,9 @@ const { sin, cos, sqrt, PI, floor, round, ceil, max, min, abs } = Math,
 			// colrect = ({ x, y, w, h }, { x: x2, y: y2, w: w2, h: h2 }) => x + w >= x2 && x <= x2 + w2 && y + h >= y2 && y <= y2 + h2;
       
       button = (txt, x, y, w, h, fun) => {
-        let bh = 0; 
+        let bh; 
         if(typeof h === "function")
-          bh = texth(txt, w) * 1.6, fun = h;
-        else bh = h || texth(txt, w) * 1.6;
+          bh = texth(txt, w) * w / txt.length, fun = h;
+        else bh = h || texth(txt, w) * w / txt.length;
         buttons.push(new Button(txt, x, y, w, bh, fun, texth(txt, w - bh)).draw())
       };

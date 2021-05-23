@@ -15,8 +15,8 @@ uws.App()
   
   // The main webpage
   .get("/", (res, req) => {
-    res.writeHeader("Access-Control-Allow-Origin", "*");
-    res.writeHeader("Access-Control-Allow-headers", "*");
+    res.writeHeader("access-Control-Allow-Origin", "*");
+    res.writeHeader("access-Control-Allow-headers", "*");
     res.writeHeader("content-type", "text/html");
     res.end(read("public/index.html") + "");
   })
