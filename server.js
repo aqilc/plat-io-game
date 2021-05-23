@@ -1,23 +1,24 @@
-import nano from "nanoexpress/src/nanoexpress.js";
+import uws from "uWebSockets.js";
 import { readFileSync as read } from "fs";
 
-const app = nano()
+const app = uws.App();
 
-app.get("/style.css", (req, res) => {
-  res.setHeader("content-type", "text/css");
-  res.send(read("public/style.css") + "");
+app.get("/style.css", (res, req) => {
+  res.writeHeader("content-type", "text/css");
+  res.end(read("public/style.css") + "");
 });
 
-app.get("/", (req, res) => {
-  res.setHeader("content-type", "text/html");
-  res.send(read("public/index.html") + "");
+app.get("/", (res, req) => {
+  res.writeHeader("content-type", "text/html");
+  res.end(read("public/index.html") + "");
 });
 
-app.get("/*", (req, res) => {
-  if(!req.path.endsWith(".js")) return res.status(404), res.end();
+app.get("/*", (res, req) => {
+  const path = req.getUrl();
+  if(!path.endsWith(".js")) return res.writeStatus("404"), res.end();
   console.log("or here")
-  res.setHeader("content-type", "application/javascript");
-  res.send(read("js" + req.path) + "");
+  res.writeHeader("content-type", "application/javascript");
+  res.end(read("js" + path) + "");
 });
 
-app.listen(8000);
+app.listen(8000, () => console.log("listening on port 8000"));
