@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/*", (req, res) => {
-  if(!req.path.endsWith(".js")) return res.status(404);
+  if(!req.path.endsWith(".js")) return res.status(404), res.end();
   console.log("or here")
   res.setHeader("content-type", "application/javascript");
   res.send(read("js" + req.path) + "");
