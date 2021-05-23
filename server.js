@@ -1,6 +1,8 @@
 import uws from "uWebSockets.js";
 import { readFileSync as read } from "fs";
 
+const users = [];
+
 // The entirety of the web routes and webapp code
 uws.App()
 
@@ -19,11 +21,11 @@ uws.App()
   .ws("/ws", {
   
     // Websocket behavioral options
-    idleTimeout: 10,
+    idleTimeout: 12,
     compression: 0,
     maxPayloadLength: 1024 * 1024,
   
-    open(ws) { console.log("Connection opened"); },
+    open(ws) { console.log("Connection opened"); users.push(ws); },
   
     // When a message is recieved
     message(ws, message, binary) {
@@ -49,7 +51,11 @@ uws.App()
   // Everything else, including all of the javascript
   .get("/*", (res, req) => {
     const path = req.getUrl();
+    
+    // Ignore all non js file stuff ye
     if(!path.endsWith(".js")) return res.writeStatus("404"), res.end();
+    
+    // Send requested js file from the js/ dir
     res.writeHeader("content-type", "application/javascript");
     res.end(read("js" + path) + "");
   }).listen(8000, () => console.log("Your app is listening on port 8000"));
