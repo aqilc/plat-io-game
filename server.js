@@ -16,17 +16,22 @@ uws.App()
     res.end(read("public/index.html") + "");
   })
 
-  .ws({
+  .ws("/ws", {
     idleTimeout: 10,
     compression: 0,
     maxPayloadLength: 1024 * 1024,
   
     open(ws) { console.log("Connection opened"); },
     message(ws, message, binary) {
-      ws.send(message);
+      if (binary) message = Buffer.from(message).toString("utf8");
+      
+      let start = message[0];
+      if (start === "[" || start === "{" && message.)
+      console.log(message + "");
     },
+    drain(ws) { console.log("drain?"); },
     close(ws, code, message) {
-      console.log("Connection closed", code, message)
+      console.log("Connection closed", code, message);
     }
   })
   
