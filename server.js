@@ -17,17 +17,28 @@ uws.App()
   })
 
   .ws("/ws", {
+  
+    // Websocket behavioral options
     idleTimeout: 10,
     compression: 0,
     maxPayloadLength: 1024 * 1024,
   
     open(ws) { console.log("Connection opened"); },
+  
+    // When a message is recieved
     message(ws, message, binary) {
-      if (binary) message = Buffer.from(message).toString("utf8");
       
-      let start = message[0];
-      if (start === "[" || start === "{" && message.)
-      console.log(message + "");
+      // Auto parses the given arraybuffer??
+      if(!binary)
+        message = message.toString("utf8");
+      
+      // If it's JSON, parse it
+      if(typeof message === "string") {
+        let start = message[0];
+        if (start === "[" || start === "{" && message.indexOf("[object") < 0)
+          message = JSON.parse(message);
+        console.log(message + "");
+      }
     },
     drain(ws) { console.log("drain?"); },
     close(ws, code, message) {
