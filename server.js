@@ -5,6 +5,7 @@ const users = [];
 
 // The entirety of the web routes and webapp code
 uws.App()
+  .any("*", (res, _), => res.writeHeader("Access-Control-Allow-Origin", "*"))
 
   // Styles
   .get("/style.css", (res, req) => {
@@ -14,6 +15,7 @@ uws.App()
   
   // The main webpage
   .get("/", (res, req) => {
+    res.writeHeader("Access-Control-Allow-Origin", "*");
     res.writeHeader("content-type", "text/html");
     res.end(read("public/index.html") + "");
   })

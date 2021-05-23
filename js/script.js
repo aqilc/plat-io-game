@@ -30,10 +30,6 @@ function setup() {
 	
 	// Creates the canvas
 	createCanvas(windowWidth, windowHeight);
-	
-  // Loads every font
-  for (let i in txth.fonts)
-    txth.fonts[i] = loadFont(txth.fonts[i]);
   
 	// Pushes you onto the players stack
 	players.push(you = new You());
@@ -84,4 +80,12 @@ function setup() {
 		fill(100);
 		text(((1/delta) * 1000).toFixed(1) + "FPS\nActual frametime: " + (performance.now() - last).toFixed(1) + " ms\n" + you.x + ", " + you.y + "\n" + delta + "\n" + JSON.stringify(buttons[0]), 100, 120);
 	}, 1000 / tdt);
+}
+
+// Run on preload or something
+function preload() {
+  
+  // Loads every font
+  for (let i in txth.fonts)
+    txth.fonts[i] = loadFont(txth.fonts[i]);
 }
