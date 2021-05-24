@@ -110,7 +110,7 @@ const { sin, cos, sqrt, PI, floor, round, ceil, max, min, abs } = Math,
       
       // Returns the text size corresponding to the width
       texth = (txt, w, mag = 1.2) => {
-        let size = height;
+        let size = 200;
         do { textSize(size /= mag); } while (textWidth(txt) > w);
         return size;
       },
@@ -123,9 +123,9 @@ const { sin, cos, sqrt, PI, floor, round, ceil, max, min, abs } = Math,
 			// colrect = ({ x, y, w, h }, { x: x2, y: y2, w: w2, h: h2 }) => x + w >= x2 && x <= x2 + w2 && y + h >= y2 && y <= y2 + h2;
       
       button = (txt, x, y, w, h, fun) => {
-        /*let bh = 0;
+        let bh = 0;
         if(typeof h === "function")
-          bh = texth(txt, w) * 1.5, fun = h;
-        else bh = h || texth(txt, w) * 1.6;*/
-        buttons.push(new Button(txt, x, y, w, 30, fun, 20 /*texth(txt, w - bh)*/).draw());
+          bh += texth(txt, w), bh *= , fun = h;
+        else bh = h || texth(txt, w) * 1.6;
+        buttons.push(new Button(txt, x, y, w, bh, fun, texth(txt, w - bh)).draw());
       };

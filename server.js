@@ -1,23 +1,23 @@
 import uws from "uWebSockets.js";
 import { readFileSync as read } from "fs";
 
-const users = [];
+const users = [], cows = (read("cows.txt") + "").split("\n\n\n");
 
 // The entirety of the web routes and webapp code
 uws.App()
   
   // Styles
   .get("/style.css", (res, req) => {
-    //res.writeHeader("Access-Control-Allow-Origin", "*")
+    res.writeHeader("Access-Control-Allow-Origin", "*")
     res.writeHeader("content-type", "text/css");
     res.end(read("public/style.css"));
   })
   
   // The main webpage
   .get("/", (res, req) => {
-    //res.writeHeader("access-Control-Allow-Origin", "*");
-    //res.writeHeader("access-Control-Allow-headers", "*");
-    //res.writeHeader("content-type", "text/html");
+    res.writeHeader("access-Control-Allow-Origin", "*");
+    res.writeHeader("access-Control-Allow-headers", "*");
+    res.writeHeader("content-type", "text/html");
     res.end(read("public/index.html"));
   })
 
@@ -58,10 +58,10 @@ uws.App()
     const path = req.getUrl();
     
     // Ignore all non js file stuff ye
-    if(!path.endsWith(".js")) return res.writeStatus("404"), res.end();
+    if(!path.endsWith(".js")) return res.writeStatus("404"), res.end(cows[Math.floor(cows.length * Math.random())]);
     
     // Send requested js file from the js/ dir
-    //res.writeHeader("Access-Control-Allow-Origin", "*")
-    //res.writeHeader("content-type", "application/javascript");
+    res.writeHeader("Access-Control-Allow-Origin", "*")
+    res.writeHeader("content-type", "application/javascript");
     res.end(read("js" + path) + "");
   }).listen(8000, () => console.log("Your app is listening on port 8000"));
