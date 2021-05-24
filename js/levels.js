@@ -174,16 +174,16 @@ const btypes = {
 	solid: (x, y, j, i) => {
 		if(x < you.x + size && x + size > you.x &&
 			 y < you.y + size && y + size > you.y) {
-			const { px, py, x: ux, y: uy } = you;
+			const { px, py, x: ux, y: uy, vy, vx } = you;
 			
-			if(px + size < x)
+			if(vx > 0)
 				return you.x = x - size, you.vx = 0;
-			else if(px > x + size)
+			else if(vx < 0)
 				return you.x = x + size, you.vx = 0;
 			
-			if(py + size < y)
-				return you.y = y - size, you.vy = 0;
-			else if(py > y + size)
+			if(vy > 0)
+				return you.y = y - size, you.vy = 0, you.grounded = true;
+			else if(vy < 0)
 				return you.y = y + size, you.vy = 0;
 			// const { x: px, y: py } = you, dx = px - x, dy = floor(py - y + size),
 			// 			vx = abs(you.vx), vy = abs(you.vy);
