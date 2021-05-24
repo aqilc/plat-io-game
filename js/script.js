@@ -70,13 +70,13 @@ function setup() {
 		pop();
 		
     txth.f = "monospace";
-    button("Fullscreen?", 20, 20, 100, 25, fullscreened ? nofullscreen : fullscreen);
+    button("Fullscreen", width - 120, height - 45, 100, 25, fullscreened ? nofullscreen : fullscreen);
     
 		// FPS
     textAlign(LEFT, TOP);
     textSize(12);
 		fill(100);
-		text(((1/delta) * 1000).toFixed(1) + "FPS\nActual frametime: " + (performance.now() - last).toFixed(1) + " ms\n" + you.x + ", " + you.y + "\n" + delta + "\n" + JSON.stringify(buttons[0]), 100, 120);
+		text(((1/delta) * 1000).toFixed(1) + "FPS\nActual frametime: " + (performance.now() - last).toFixed(1) + " ms\nX: " + you.x + ", Y: " + you.y + "\n" + delta, 100, 120);
 	}, 1000 / tdt);
 }
 

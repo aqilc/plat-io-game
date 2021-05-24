@@ -176,14 +176,14 @@ const btypes = {
 			 y < you.y + size && y + size > you.y) {
 			const { px, py, x: ux, y: uy } = you;
 			
-			if(px < ux)
+			if(px + size < ux)
 				return you.x = x - size, you.vx = 0;
 			else if(px > ux)
 				return you.x = x + size, you.vx = 0;
 			
-			if(py < uy)
+			if(py + size < y)
 				return you.y = y - size;
-			else if(py > uy)
+			else if(py > y)
 				return you.y = y + size;
 			// const { x: px, y: py } = you, dx = px - x, dy = floor(py - y + size),
 			// 			vx = abs(you.vx), vy = abs(you.vy);
