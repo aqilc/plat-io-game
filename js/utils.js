@@ -110,7 +110,13 @@ const { sin, cos, sqrt, PI, floor, round, ceil, max, min, abs } = Math,
       
       // Returns the text size corresponding to the width
       texth = (txt, w, mag = 1.2) => {
-        let size = 200;
+        if(txth.font === "monospace") {
+          let size = 20;
+          textSize(size); // this may seem dumb but it makes everything work so don't remove
+          textSize(size = w / txt.length * (20 / textWidth("m") /* <— magic💨 */));
+          return size;
+        }
+        let size = 400;
         do { txth.s = (size /= mag); } while (textWidth(txt) > w);
         return size;
       },
@@ -122,10 +128,7 @@ const { sin, cos, sqrt, PI, floor, round, ceil, max, min, abs } = Math,
 			// colrec = (x, y, w, h, x2, y2, w2, h2) => x + w >= x2 && x <= x2 + w2 && y + h >= y2 && y <= y2 + h2,
 			// colrect = ({ x, y, w, h }, { x: x2, y: y2, w: w2, h: h2 }) => x + w >= x2 && x <= x2 + w2 && y + h >= y2 && y <= y2 + h2;
       
-      button = (txt, x, y, w, h, fun) => {
-        let bh = 0;
-        if(typeof h === "function")
-          bh += texth(txt, w), fun = h;
-        else bh = h || texth(txt, w) * 1.6;
-        buttons.push(new Button(txt, x, y, w, bhw / (bh / 2) * txt.length, fun, texth(txt, w - bh)).draw());
+      button = (txt, x, y, w, fun) => {
+        let bh = textAscent() * (textWidth(txt) / (texth(txt, w) / 3p5) / txt.length);
+        buttons.push(new Button(txt, x, y, w, bh, fun, texth(txt, w - bh)).draw());
       };
