@@ -111,7 +111,7 @@ const { sin, cos, sqrt, PI, floor, round, ceil, max, min, abs } = Math,
       // Returns the text size corresponding to the width
       texth = (txt, w, mag = 1.2) => {
         let size = 200;
-        do { textSize(size /= mag); } while (textWidth(txt) > w);
+        do { txth.s = (size /= mag); } while (textWidth(txt) > w);
         return size;
       },
       
@@ -125,7 +125,7 @@ const { sin, cos, sqrt, PI, floor, round, ceil, max, min, abs } = Math,
       button = (txt, x, y, w, h, fun) => {
         let bh = 0;
         if(typeof h === "function")
-          bh += texth(txt, w), bh *= t, fun = h;
+          bh += texth(txt, w), fun = h;
         else bh = h || texth(txt, w) * 1.6;
-        buttons.push(new Button(txt, x, y, w, bh, fun, texth(txt, w - bh)).draw());
+        buttons.push(new Button(txt, x, y, w, bhw / (bh / 2) * txt.length, fun, texth(txt, w - bh)).draw());
       };
