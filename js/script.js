@@ -1,7 +1,7 @@
 
 // Constants
 const /* socket = io.connect(":30000?sketch=558471"), */
-		players = [], grav = .003, tdt = /* Target FPS */ 200,
+		players = [], grav = .003, tdt = /* Target FPS */ 20,
     
     // Button holder
     buttons = []/*, txth = {
@@ -13,10 +13,8 @@ const /* socket = io.connect(":30000?sketch=558471"), */
       set f(f) { textFont(this.fonts[f]); this.font = f; },
     }*/;
 
-let fullscreened = false, bc = false;
-
 // Variables
-let size = 20, level, you, cam, last, delta;
+let size = 20, level, you, cam, last, delta, fullscreened = false, bc = false;
 
 // If the project is offline, it will throw an error
 function unreachable() {

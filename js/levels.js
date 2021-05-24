@@ -154,7 +154,6 @@ class Level {
 		if(you.y + size > this.floor)
 			you.y = this.floor - size, you.vy = 0, you.grounded = true;
 		if(you.x < 0) you.x = 0; else if (you.x > this.width * size - size) you.x = this.width * size - size;
-    
   }
 }
 

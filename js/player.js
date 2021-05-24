@@ -47,14 +47,12 @@ class You extends Player {
 	
 	// Draws you
 	draw() {
+		super.draw();
     
     this.px = this.x;
     this.py = this.y;
     this.x += this.vx * delta;
     this.y += this.vy * delta;
-    
-		super.draw();
-    
     this.vy += grav * delta;
     this.vx = Math.abs(this.vx) > 0.05 ? this.vx / 1.1 : 0;
 	}
