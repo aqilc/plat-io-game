@@ -176,6 +176,8 @@ const btypes = {
 			 y < you.y + size && y + size > you.y) {
 			const { px, py, x: ux, y: uy, vy, vx } = you;
 			
+      if(abs(vy / vx) < abs((uy / y) / (ux - x)))
+      
 			if(vx > 0)
 				return you.x = x - size, you.vx = 0;
 			else if(vx < 0)
