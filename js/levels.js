@@ -181,7 +181,7 @@ const btypes = {
       if(vx > 0)
         ux += size, x += size;
       
-      if(abs(vy / vx) < abs((uy / y) / (ux - x)))
+      if(abs(vy / vx) < abs((uy - y) / (ux - x)))
         you.x = vx > 0 ? x - size : x, you.vx = 0;
       else you.y = vy > 0 ? y - size : y, you.vy = 0, you.grounded = true;
 // 			if(vx > 0)
