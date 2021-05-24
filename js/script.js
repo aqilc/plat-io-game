@@ -1,14 +1,14 @@
 
 // Constants
 const /* socket = io.connect(":30000?sketch=558471"), */
-		players = [], grav = .003, tdt = /* Target FPS */ 20,
+		players = [], grav = .003, tdt = /* Target FPS */ 200,
     
     // Button holder
     buttons = [], txth = {
       fonts: {
         monospace: "monospace" // "https://cdn.glitch.com/e1856840-428a-4553-8031-902816e57879%2FRobotoMono.ttf?v=1621783528593"
       },
-      size: 12, font: "monospace",
+      size: 12, font: "arial",
       set s(v) { textSize(v); this.size = v; },
       set f(f) { textFont(this.fonts[f]); this.font = f; },
     };
@@ -70,7 +70,7 @@ function setup() {
 		pop();
 		
     txth.f = "monospace";
-    button("Fullscreen?", 20, 20, 100, fullscreened ? nofullscreen : fullscreen);
+    button("Fullscreen?", 20, 20, 100, 25, fullscreened ? nofullscreen : fullscreen);
     
 		// FPS
     textAlign(LEFT, TOP);
