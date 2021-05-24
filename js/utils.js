@@ -125,7 +125,7 @@ const { sin, cos, sqrt, PI, floor, round, ceil, max, min, abs } = Math,
       button = (txt, x, y, w, h, fun) => {
         let bh = 0;
         if(typeof h === "function")
-          bh += texth(txt, w), bh *= , fun = h;
+          bh += texth(txt, w), bh *= t, fun = h;
         else bh = h || texth(txt, w) * 1.6;
         buttons.push(new Button(txt, x, y, w, bh, fun, texth(txt, w - bh)).draw());
       };
