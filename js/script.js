@@ -4,14 +4,14 @@ const /* socket = io.connect(":30000?sketch=558471"), */
 		players = [], grav = .003, tdt = /* Target FPS */ 200,
     
     // Button holder
-    buttons = [], txth = {
+    buttons = []/*, txth = {
       fonts: {
         monospace: "monospace" // "https://cdn.glitch.com/e1856840-428a-4553-8031-902816e57879%2FRobotoMono.ttf?v=1621783528593"
       },
       size: 12, font: "monospace",
       set s(v) { textSize(v); this.size = v; },
-      set f(f) { textFont(fonts[f]); this.font = f; },
-    };
+      set f(f) { textFont(this.fonts[f]); this.font = f; },
+    }*/;
 
 let fullscreened = false, bc = false;
 
@@ -71,7 +71,7 @@ function setup() {
 		players.forEach(p => p.draw());
 		pop();
 		
-    txth.font = "monospace";
+    //txth.font = "monospace";
     button("Fullscreen?", 20, 20, 100, fullscreened ? nofullscreen : fullscreen);
     
 		// FPS
