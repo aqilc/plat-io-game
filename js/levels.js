@@ -177,9 +177,9 @@ const btypes = {
 			let { px, py, x: ux, y: uy, vy, vx } = you;
 			
       if(vy > 0)
-        uy += size, y += size;
+        uy += size; else y += size;
       if(vx > 0)
-        ux += size, x += size;
+        ux += size; else x += size;
       
       if(abs(vy / vx) < abs((uy - y) / (ux - x)))
         you.x = vx > 0 ? x - size : x, you.vx = 0;
