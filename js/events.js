@@ -1,6 +1,7 @@
 
 function mouseClicked() {
   buttons.find(b => b.click());
+  return true;
 }
 
 // Main keybinds, not including any arrows
@@ -56,6 +57,6 @@ function keyReleased(e) {
 
 function mouseWheel(event) {
   //move the square according to the vertical scroll amount
-  //cam.dx += event.delta * delta / 10;
+  cam.dx += event.delta * delta / 10;
   return false;
 }
