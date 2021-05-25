@@ -82,7 +82,7 @@ class Button {
     if (!bc && mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h) fill(this.col2), bc = this.hov = true; else fill(this.col1);
     rect(x, y, w, h, r);
     fill(tcol);
-    textSize(tsiz);
+    txth.s = tsiz;
     textAlign(CENTER, CENTER);
     text(txt, x + w / 2, y + h / 2);
     return this;

@@ -122,6 +122,11 @@ class Level {
 		this.width = mlen;
 		this.init = true;
 	}
+  
+  get(x, y) {
+    if(y > this.y && x < this.width * size)
+      return blocks[levels[this.id][floor((you.y - this.y) / size)][floor(you.x / size)]];
+  }
 	
 	/**
 	 * Normalize player position to 1-4 blocks, set up checks for the player for

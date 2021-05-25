@@ -47,6 +47,9 @@ class You extends Player {
 	
 	// Draws you
 	draw() {
+    
+    if
+    
 		super.draw();
     
     this.x += this.vx * delta;
