@@ -57,7 +57,8 @@ function setup() {
 		cam.exec();
 		
 		level.draw();
-		level.collide();
+		//level.collide();
+    text("pog", 200, 200)
 		players.forEach(p => p.draw());
 		
     

@@ -30,7 +30,7 @@ const blocks = {
   },
 	
 	// Sets player starting position
-	p: { init(x, y) { this.lvl.pstart.set(x, y); } }
+	p: { init(x, y) { you.move(x, y); } }
 };
 
 /**
@@ -136,7 +136,6 @@ class Level {
    * ((player.y + size) / size, (player.x + size) / size)
 	 */
 	collide() {
-		if(!this.started) you.x = this.pstart.x, you.y = this.pstart.y, this.started = true;
 		
 // 		// If the player is touching the level at all
 //     if(you.y + size > this.y) {

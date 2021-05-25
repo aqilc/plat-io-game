@@ -50,9 +50,13 @@ class You extends Player {
     
     let { x, y, vx, vy } = this, nx = vx * delta, ny = vy * delta;
     
+    text(JSON.stringify(level.get(x, y + ny)), 300, 300);
     // Player collision
     if (level.get(x, y + ny)?.type === "solid")
       this.vy = 0;
+    
+    
+    text("pog", 300, 300);
     
     // Don't let the player go off the screen
 		if(y + size > level.floor)
