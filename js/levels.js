@@ -132,23 +132,23 @@ class Level {
 	collide() {
 		if(!this.started) you.x = this.pstart.x, you.y = this.pstart.y, this.started = true;
 		
-		// If the player is touching the level at all
-    if(you.y + size > this.y) {
+// 		// If the player is touching the level at all
+//     if(you.y + size > this.y) {
 			
-			// Figure out the block coords in the level.
-			const bx = floor(you.x / size), by = floor((you.y - this.y) / size), lvl = levels[this.id];
-			//console.log(bx + " " + by + " " + lvl[by]?.[bx]);
+// 			// Figure out the block coords in the level.
+// 			const bx = floor(you.x / size), by = floor((you.y - this.y) / size), lvl = levels[this.id];
+// 			//console.log(bx + " " + by + " " + lvl[by]?.[bx]);
 			
-			// Loop through the blocks around it and do collision function stuff
-			for(let i = 9; i >= 0; i --) {
-				const y = floor(i / 3), x = i % 3, b = blocks[lvl[by + y]?.[bx + x]];
-				if(!b) continue;
-				const { type } = b;
+// 			// Loop through the blocks around it and do collision function stuff
+// 			for(let i = 9; i >= 0; i --) {
+// 				const y = floor(i / 3), x = i % 3, b = blocks[lvl[by + y]?.[bx + x]];
+// 				if(!b) continue;
+// 				const { type } = b;
 				
-				if(type)
-					btypes[type]?.(size * (bx + x), this.y + size * (by + y), x, y);
-			}
-    }
+// 				if(type)
+// 					btypes[type]?.(size * (bx + x), this.y + size * (by + y), x, y);
+// 			}
+//     }
 		
     // Don't let the player go off the screen
 		if(you.y + size > this.floor)
@@ -160,45 +160,46 @@ class Level {
 // Array of defined levels for the game, may add some sort of database later
 const levels = [
 	[
+    "    p",
 		"    0",
 		"                 0000000000",
 		"                0000000000aa                      0000000",
-		"     p         00000000000000                    aa00000aaa",
+		"               00000000000000                    aa00000aaa",
 		"              00000000000000aa                  000000000000aaaa",
 		"             000000000000000000   -   -   -    aa0000000000000000",
-		"            0000000000000000000aaaa0aaa0aaa0aaa000000000000000000000                          0",
+		"            00000000000000000000aaa0aaa0aaa0aaa000000000000000000000                          0",
 	],
 ];
 
-const btypes = {
-	solid: (x, y, j, i) => {
-		if(x < you.x + size && x + size > you.x &&
-			 y < you.y + size && y + size > you.y) {
-			let { px, py, x: ux, y: uy, vy, vx } = you;
+// const btypes = {
+// 	solid: (x, y, j, i) => {
+// 		if(x < you.x + size && x + size > you.x &&
+// 			 y < you.y + size && y + size > you.y) {
+// 			let { px, py, x: ux, y: uy, vy, vx } = you;
 			
-      if(vy > 0) uy += size; else y += size;
-      if(vx > 0) ux += size; else x += size;
+//       if(vy > 0) uy += size; else y += size;
+//       if(vx > 0) ux += size; else x += size;
       
-      if(abs(vy / vx) < abs((uy - y) / (ux - x)))
-        you.x = vx > 0 ? x - size : x, you.vx = 0;
-      else you.y = vy > 0 ? y - size : y, you.vy = 0, you.grounded = true;
-// 			if(vx > 0)
-// 				you.x = x - size, you.vx = 0;
-// 			else if(vx < 0)
-// 				return you.x = x + size, you.vx = 0;
+//       if(abs(vy / vx) < abs((uy - y) / (ux - x)))
+//         you.x = vx > 0 ? x - size : x, you.vx = 0;
+//       else you.y = vy > 0 ? y - size : y, you.vy = 0, you.grounded = true;
+// // 			if(vx > 0)
+// // 				you.x = x - size, you.vx = 0;
+// // 			else if(vx < 0)
+// // 				return you.x = x + size, you.vx = 0;
 			
-// 			if(vy > 0)
-// 				return you.y = y - size, you.vy = 0, you.grounded = true;
-// 			else if(vy < 0)
-// 				return you.y = y + size, you.vy = 0;
-			// const { x: px, y: py } = you, dx = px - x, dy = floor(py - y + size),
-			// 			vx = abs(you.vx), vy = abs(you.vy);
-			// if(vy > vx || dy < 2) {
-			// 	you.grounded = true;
-			// 	you.y = floor(y - size); you.vy = 0;
-			// 	if(you.vy * delta > 10) you.health.damage(0.05 + (you.vy * delta - 10) / 2);
-			// }	else if(vx > vy) you.x = floor(x - size * sign(you.vx)), you.vx = 0;
-			// else if (dy > size - 2) you.y = y + size, you.vy = 0;
-		}
-	}
-}
+// // 			if(vy > 0)
+// // 				return you.y = y - size, you.vy = 0, you.grounded = true;
+// // 			else if(vy < 0)
+// // 				return you.y = y + size, you.vy = 0;
+// 			// const { x: px, y: py } = you, dx = px - x, dy = floor(py - y + size),
+// 			// 			vx = abs(you.vx), vy = abs(you.vy);
+// 			// if(vy > vx || dy < 2) {
+// 			// 	you.grounded = true;
+// 			// 	you.y = floor(y - size); you.vy = 0;
+// 			// 	if(you.vy * delta > 10) you.health.damage(0.05 + (you.vy * delta - 10) / 2);
+// 			// }	else if(vx > vy) you.x = floor(x - size * sign(you.vx)), you.vx = 0;
+// 			// else if (dy > size - 2) you.y = y + size, you.vy = 0;
+// 		}
+// 	}
+// }
