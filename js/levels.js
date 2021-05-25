@@ -123,13 +123,14 @@ class Level {
 		this.init = true;
 	}
   
+  // Gets the block in the level at position x and y :D
   get(x, y) {
     if(y > this.y && x < this.width * size)
       return blocks[levels[this.id][floor((you.y - this.y) / size)][floor(you.x / size)]];
   }
 	
 	/**
-	 * Normalize player position to 1-4 blocks, set up checks for the player for
+	 * Normalize player position to a block in the level, do collisions and other stuff
 	 * every block around that block.
    * 
    * ((player.y + size) / size, (player.x + size) / size)
