@@ -53,6 +53,14 @@ function setup() {
 		background(256);
 		
     
+		cam.dx = max(width / 2, min(you.x, (level.width * size) - (width / 2)));
+		cam.exec();
+		
+		level.draw();
+		level.collide();
+		players.forEach(p => p.draw());
+		
+    
 		// Arrows and general keybinds
 		if(pressing.size) {
 			let ap = false;
@@ -61,13 +69,7 @@ function setup() {
 				(keybinds[keybarr.find(k => k.every(p => pressing.has(p)))] || (() => {}))();
 		}
 		
-		cam.dx = max(width / 2, min(you.x, (level.width * size) - (width / 2)));
-		cam.exec();
-		
-		level.draw();
-		level.collide();
-		players.forEach(p => p.draw());
-		pop();
+    pop();
 		
     txth.f = "monospace";
     button("Fullscreen", width - 120, height - 45, 100, 25, fullscreened ? nofullscreen : fullscreen);
