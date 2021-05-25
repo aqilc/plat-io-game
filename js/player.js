@@ -48,6 +48,7 @@ class You extends Player {
 	// Draws you
 	draw() {
     
+    let 
     
     // Player collision
     if () ;
