@@ -48,8 +48,16 @@ class You extends Player {
 	// Draws you
 	draw() {
     
-    if
     
+    // Player collision
+    if () ;
+    
+    // Don't let the player go off the screen
+		if(this.y + size > level.floor)
+			this.y = level.floor - size, this.vy = 0, this.grounded = true;
+		if(this.x < 0) this.x = 0; else if (this.x > level.width * size - size) this.x = level.width * size - size;
+    
+    // Draws the player
 		super.draw();
     
     this.x += this.vx * delta;
