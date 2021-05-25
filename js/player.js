@@ -48,23 +48,25 @@ class You extends Player {
 	// Draws you
 	draw() {
     
-    let 
+    let { x, y, vx, vy } = this, nx = vx * delta, ny = vy * delta;
     
     // Player collision
-    if () ;
+    if (level.get(x, y + ny)?.type === "solid")
+      this.vy = 0;
     
     // Don't let the player go off the screen
-		if(this.y + size > level.floor)
+		if(y + size > level.floor)
 			this.y = level.floor - size, this.vy = 0, this.grounded = true;
-		if(this.x < 0) this.x = 0; else if (this.x > level.width * size - size) this.x = level.width * size - size;
+		if(x < 0) this.x = 0; else if (x > level.width * size - size) this.x = level.width * size - size;
     
     // Draws the player
 		super.draw();
     
-    this.x += this.vx * delta;
-    this.y += this.vy * delta;
-    this.vy += grav * delta;
-    this.vx = Math.abs(this.vx) > 0.05 ? this.vx / 1.1 : 0;
+    // Moves the player for the next frame, slows down the x velocity, and adds gravity.
+    this.x += nx;
+    this.y += ny;
+    this.vy += grav * delta; // a = m/s^2, so have to multiply by time(delta) again to get proper gravity
+    this.vx = Math.abs(vx) > 0.05 ? vx / 1.1 : 0;
 	}
 }
 
